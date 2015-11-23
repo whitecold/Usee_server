@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.log4j.Logger;
 
 /**
  * 对数据库信息进行删除操作
@@ -14,7 +15,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
  *
  */
 public class DbDelete {
-
+	private static Logger logger = Logger.getLogger(DbDelete.class);  
 	/**
 	 * 删除关系表
 	 * @param param 学号。教师工号，项目编号
@@ -31,6 +32,7 @@ public class DbDelete {
             DbUtils.closeQuietly(conn);
             return flag;
         } catch (SQLException e) {
+        	logger.error(e);
             e.printStackTrace();
             return 0;
         }

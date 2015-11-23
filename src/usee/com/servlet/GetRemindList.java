@@ -11,20 +11,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import usee.com.service.MessageService;
+import usee.com.service.RemindService;
 import usee.com.utils.LogUtils;
 
 /**
- * Servlet implementation class GetMessagesList
+ * Servlet implementation class GetRemindServlet
  */
-@WebServlet("/GetMessageList")
-public class GetMessageList extends HttpServlet {
+@WebServlet("/GetRemindList")
+public class GetRemindList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static Logger logger = Logger.getLogger(GetMessageList.class);  
+	private static Logger logger = Logger.getLogger(GetRemindList.class); 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetMessageList() {
+    public GetRemindList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,12 +36,11 @@ public class GetMessageList extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("utf-8");
-		response.setContentType("application/json;charset=utf-8");
-		String lon= request.getParameter("lon");
-		String lat=request.getParameter("lat");
+		response.setContentType("text/html;charset=utf-8");
+		String devid=request.getParameter("devid");
 		logger.info(LogUtils.logRequest(request));
-		MessageService ms=new  MessageService();
-		String result=ms.getMessages(lon, lat);
+		RemindService rs=new RemindService();
+		String result=rs.getRemindList(devid);
 		PrintWriter out = response.getWriter();
 		out.print(result);
 	}
@@ -51,6 +50,7 @@ public class GetMessageList extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 	}
 
 }

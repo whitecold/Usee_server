@@ -2,13 +2,21 @@ package usee.com.bean;
 
 public class Message {
 private String id;
-private int devid;
+private String devid;
 private double  lon;
 private double lat;
 private String station;
 private String kind;
 private int praiseNum;
 private int commentNum;
+private String creattime;
+
+public String getCreattime() {
+	return creattime;
+}
+public void setCreattime(String creattime) {
+	this.creattime = creattime;
+}
 public String getId() {
 	return id;
 }
@@ -16,10 +24,10 @@ public void setId(String id) {
 	this.id = id;
 }
 
-public int getDevid() {
+public String getDevid() {
 	return devid;
 }
-public void setDevid(int devid) {
+public void setDevid(String devid) {
 	this.devid = devid;
 }
 public double getLon() {

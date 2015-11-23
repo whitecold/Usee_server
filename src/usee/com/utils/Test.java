@@ -90,9 +90,31 @@ public class Test extends TestCase{
 //		System.out.println(address);
 //	}
 	public void testGetRemind(){
-		String devid="1112334";
+		String devid="231233";
 		RemindService rs=new RemindService();
-		String result=rs.getRemind(devid);
+		String result=rs.getRemindList(devid);
 		System.out.println(result);
 	}
+//	public void testcode(){
+//		String result="";
+//		String url="http://114.215.141.67/USee/GetMessage?messageid=71a6f0384f774bb095b209ceb23139b4";
+//		try {
+//			result=RequestClient.sendGet(url, null);
+//			ConverStr.judgeCharster(result);
+//		} catch (UnsupportedEncodingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			
+//		}
+//	}
+	
+//	public void testgetRemind(){
+//		String remindid="21";
+//		RemindService rs=new RemindService();
+//		String result=rs.getRemind(remindid);
+//		System.out.println(result);
+//	}
 }

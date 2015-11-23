@@ -10,6 +10,7 @@ import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.omg.CORBA.TCKind;
 /**
@@ -17,6 +18,7 @@ import org.omg.CORBA.TCKind;
  * @author pj
  */
 public class DbReader {
+	private static Logger logger = Logger.getLogger(DbReader.class);  
     /**
      * 根据sql语句查询一条记录
      * @param sql
@@ -44,6 +46,7 @@ public class DbReader {
                 return null;
             }
         } catch (SQLException e) {
+        	logger.error(e);
             e.printStackTrace();
             return null;
         }

@@ -9,7 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import usee.com.service.CommentService;
+import usee.com.utils.LogUtils;
+import usee.com.utils.MapUtil;
 
 /**
  * Servlet implementation class AddComment
@@ -17,7 +21,7 @@ import usee.com.service.CommentService;
 @WebServlet("/AddComment")
 public class AddComment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private static Logger logger = Logger.getLogger(AddComment.class);  
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -40,10 +44,12 @@ public class AddComment extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=utf-8");
 		String postid=request.getParameter("devid");
 		String replyid=request.getParameter("replyid");
 		String messageid=request.getParameter("messageid");
 		String content=request.getParameter("content");
+		logger.info(LogUtils.logRequest(request));
 		CommentService cs=new CommentService();
 		String result=cs.saveComment(postid, replyid, messageid, content);
 		PrintWriter out = response.getWriter();

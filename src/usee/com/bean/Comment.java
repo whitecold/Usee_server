@@ -3,8 +3,8 @@ package usee.com.bean;
 public class Comment {
 private int id;
 private String messageid;
-private int postid;
-private int replyid;
+private String postid;
+private String replyid;
 private String content;
 public int getId() {
 	return id;
@@ -18,16 +18,16 @@ public String getMessageid() {
 public void setMessageid(String messageid) {
 	this.messageid = messageid;
 }
-public int getPostid() {
+public String getPostid() {
 	return postid;
 }
-public void setPostid(int postid) {
+public void setPostid(String postid) {
 	this.postid = postid;
 }
-public int getReplyid() {
+public String getReplyid() {
 	return replyid;
 }
-public void setReplyid(int replyid) {
+public void setReplyid(String replyid) {
 	this.replyid = replyid;
 }
 public String getContent() {

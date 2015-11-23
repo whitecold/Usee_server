@@ -9,8 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import net.sf.json.JSONObject;
+import usee.com.service.CommentService;
 import usee.com.service.MessageService;
+import usee.com.utils.LogUtils;
 
 /**
  * Servlet implementation class SaveMessage
@@ -18,7 +22,7 @@ import usee.com.service.MessageService;
 @WebServlet("/SaveMessage")
 public class SaveMessage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private static Logger logger = Logger.getLogger(SaveMessage.class); 
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -41,14 +45,17 @@ public class SaveMessage extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=utf-8");
 		String lon=request.getParameter("lon");
 		String lat=request.getParameter("lat");
 		String deadline=request.getParameter("deadline");
 		String devid=request.getParameter("devid");
 		String kind=request.getParameter("kind");
 		String content=request.getParameter("content");
+		String creattime=request.getParameter("creattime");
+		logger.info(LogUtils.logRequest(request));
 		MessageService ms=new MessageService();
-		boolean flag=ms.saveMessage(content, lon, lat, deadline, devid, kind);
+		boolean flag=ms.saveMessage(content, lon, lat, deadline, devid, kind,creattime);
 		JSONObject result=new JSONObject();
 		if(flag==true){
 			 result.put("error", 0) ;

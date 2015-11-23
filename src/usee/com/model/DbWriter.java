@@ -2,6 +2,7 @@ package usee.com.model;
 
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -10,6 +11,7 @@ import java.sql.SQLException;
  * 数据库写操作，使用commons-dbutils-1.6.jar
  */
 public class DbWriter {
+	private static Logger logger = Logger.getLogger(DbWriter.class);  
 	public static int write(String sql,String par[]) {
 		// 建立连接
 		Connection conn = DbConnect.getConn();
@@ -22,6 +24,7 @@ public class DbWriter {
 			flag = qr.update(conn, sql, par);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			logger.error(e);
 		}
 		DbUtils.closeQuietly(conn);
 		return flag;

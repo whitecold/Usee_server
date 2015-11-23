@@ -9,7 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import usee.com.service.CommentService;
+import usee.com.utils.LogUtils;
 
 /**
  * Servlet implementation class Praise
@@ -17,7 +20,7 @@ import usee.com.service.CommentService;
 @WebServlet("/Praise")
 public class Praise extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private static Logger logger = Logger.getLogger(Praise.class);     
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -40,6 +43,9 @@ public class Praise extends HttpServlet {
 		// TODO Auto-generated method stub
 		String messageid=request.getParameter("messageid");
 		String devid=request.getParameter("devid");
+		logger.info(LogUtils.logRequest(request));
+//		System.out.println("?????");
+//		System.out.println(request);
 		CommentService cs=new CommentService();
 		String result=cs.praise(devid,messageid);
 		PrintWriter out = response.getWriter();

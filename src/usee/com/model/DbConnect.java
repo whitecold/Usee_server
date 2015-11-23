@@ -5,6 +5,9 @@ package usee.com.model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+import org.apache.log4j.Logger;
+
+import usee.com.utils.MapUtil;
 import usee.com.utils.PropertiesUtil;
 /**
  * 建立数据库连接
@@ -19,6 +22,7 @@ public class DbConnect {
 	private final static String url = PropertiesUtil.getValue("dbUrl");
 	private final static String user = PropertiesUtil.getValue("dbUser");
 	private final static String psw = PropertiesUtil.getValue("dbPassword");
+	private static Logger logger = Logger.getLogger(DbConnect.class);  
 
 	public static Connection getConn() {
 		Connection conn = null;
@@ -31,6 +35,7 @@ public class DbConnect {
 		} catch (Exception e) {
 			System.out.println(e);
 			e.printStackTrace();
+			logger.error(e);
 		}
 		return conn;
 	}

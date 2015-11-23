@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.log4j.Logger;
 
 /**
  * 数据库更新操作
@@ -13,7 +14,7 @@ import org.apache.commons.dbutils.QueryRunner;
  *
  */
 public class DbUpdate {
-	
+	private static Logger logger = Logger.getLogger(DbUpdate.class);  
 	/**
 	 * 根据主键更新学生信息
 	 * @param id 主键
@@ -32,6 +33,7 @@ public class DbUpdate {
 			// 执行更新
 			flag = qr.update(conn, sql, null);
 		} catch (SQLException e) {
+			logger.error(e);
 			e.printStackTrace();
 		}
 		DbUtils.closeQuietly(conn);

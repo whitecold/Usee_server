@@ -31,7 +31,9 @@ public String saveComment(String postid,String replyid,String messageid,String c
 	String url=Api.GetUrl+messageid;
 	String back="";
 	try {
+		System.out.println("here");
 		 back=RequestClient.sendGet(url, null);
+		 System.out.println(back);
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -53,7 +55,8 @@ public String saveComment(String postid,String replyid,String messageid,String c
 		
 		sql="select * from message where id='"+messageid+"'";
 		Message msg=DbReader.getBean(sql, Message.class);
-		if(Integer.parseInt(postid)!=msg.getDevid()){
+		//如果评论的人不是发消息的人，写入提醒中
+		if(postid.equals(msg.getDevid())){
 			RemindService rs=new RemindService();
 			rs.saveRemind(postid, replyid, messageid, "comment", content);
 		}
