@@ -44,8 +44,6 @@ public class Praise extends HttpServlet {
 		String messageid=request.getParameter("messageid");
 		String devid=request.getParameter("devid");
 		logger.info(LogUtils.logRequest(request));
-//		System.out.println("?????");
-//		System.out.println(request);
 		CommentService cs=new CommentService();
 		String result=cs.praise(devid,messageid);
 		PrintWriter out = response.getWriter();

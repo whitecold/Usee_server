@@ -38,7 +38,7 @@ public class GetRemindList extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		String devid=request.getParameter("devid");
-		logger.info(LogUtils.logRequest(request));
+//		logger.info(LogUtils.logRequest(request));
 		RemindService rs=new RemindService();
 		String result=rs.getRemindList(devid);
 		PrintWriter out = response.getWriter();

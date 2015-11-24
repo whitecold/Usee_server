@@ -38,9 +38,9 @@ public class GetMessage extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
 		String messageid=request.getParameter("messageid");
-		logger.info(LogUtils.logRequest(request));
+//		logger.info(LogUtils.logRequest(request));
 		MessageService ms=new  MessageService();
-		String result=ms.getMessage(messageid,true);
+		String result=ms.getMessage(messageid);
 		PrintWriter out = response.getWriter();
 		out.print(result);
 	}

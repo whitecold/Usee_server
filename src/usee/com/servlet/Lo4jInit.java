@@ -30,7 +30,7 @@ public class Lo4jInit   extends HttpServlet {
 			Properties prop = new Properties(); 
 			try{
 				prop.load(new FileInputStream(path+file)); //加载log4j.properties
-				prop.setProperty("log4j.appender.R.File", path+logFile+ prop.getProperty("log4j.appender.R.File")); //设置日志文件的输出路径
+				//prop.setProperty("log4j.appender.file.File", path+logFile+ prop.getProperty("log4j.appender.file.File")); //设置日志文件的输出路径
 				PropertyConfigurator.configure(prop); //加载配置项
 			}catch(Exception e)
 			{

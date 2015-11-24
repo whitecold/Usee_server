@@ -28,23 +28,23 @@ public class TestHttp extends TestCase {
 //		}
 //	}
 //	
-//	public void testPraise(){
-////		System.out.println("adds");
-//		String url="http://114.215.141.67/USee/Praise";
-//		Map<String,String>parameters=new HashMap<String,String>();
-//		parameters.put("devid", "231233");
-//		parameters.put("messageid", "eef579188afe430fab9bba87cc1f2af0");
-//		try {
-//			String result=RequestClient.sendPost(url, parameters);
-//			System.out.println(result);
-//		} catch (UnsupportedEncodingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
+	public void testPraise(){
+//		System.out.println("adds");
+		String url="http://114.215.141.67/USee/Praise";
+		Map<String,String>parameters=new HashMap<String,String>();
+		parameters.put("devid", "231233");
+		parameters.put("messageid", "02fa96ee17d041debe5851315230db82");
+		try {
+			String result=RequestClient.sendPost(url, parameters);
+			System.out.println(result);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 //	public void testSaveMessage(){
 //		String url="http://114.215.141.67/USee/SaveMessage ";

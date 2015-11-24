@@ -39,7 +39,7 @@ public class GetMessageList extends HttpServlet {
 		response.setContentType("application/json;charset=utf-8");
 		String lon= request.getParameter("lon");
 		String lat=request.getParameter("lat");
-		logger.info(LogUtils.logRequest(request));
+//		logger.info(LogUtils.logRequest(request));
 		MessageService ms=new  MessageService();
 		String result=ms.getMessages(lon, lat);
 		PrintWriter out = response.getWriter();

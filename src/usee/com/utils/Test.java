@@ -11,6 +11,7 @@ import net.sf.json.JSONObject;
 import org.eclipse.jdt.internal.compiler.ast.MessageSend;
 
 import usee.com.bean.Map;
+import usee.com.bean.Message;
 import usee.com.model.DbReader;
 import usee.com.model.DbWriter;
 import usee.com.service.MessageService;
@@ -19,9 +20,9 @@ import junit.framework.TestCase;
 
 public class Test extends TestCase{
 //public void testReader(){
-//	String sql="select address from map where minlon=12312";
-//	String map=DbReader.getBean(sql, String.class);
-//	System.out.println("jh"+map);
+//	String sql="select * from message where lon like '118%' and lat like '31%' and station='true';";
+//	List<Message> list=DbReader.getBeans(sql, Message.class);
+//	System.out.println(list.size());
 ////	System.out.println(map.getAddress());
 //}
 //public void testAddress(){
@@ -31,12 +32,15 @@ public class Test extends TestCase{
 //	double lat=39.991957;
 //	MapUtil.getAddress(lon, lat);
 //}
-//	public void testgetMessages(){
-//		String lon="123.2234";
-//		String lat="113.2245";
-//		MessageService ms=new MessageService();
-//		ms.getMessages(lon, lat);
-//	}
+	public void testgetMessages(){
+		String lon="118.786877";
+		String lat="31.917352";
+		System.out.println(lon.split("\\.")[0]);
+		
+		MessageService ms=new MessageService();
+		String result=ms.getMessages(lon, lat);
+		System.out.println(result);
+	}
 //	public void testsaveMessage(){
 //		MessageService ms=new MessageService();
 //		String content="hi";
@@ -89,12 +93,12 @@ public class Test extends TestCase{
 //		String address=MapUtil.getAddress(lon, lat);
 //		System.out.println(address);
 //	}
-	public void testGetRemind(){
-		String devid="231233";
-		RemindService rs=new RemindService();
-		String result=rs.getRemindList(devid);
-		System.out.println(result);
-	}
+//	public void testGetRemind(){
+//		String devid="231233";
+//		RemindService rs=new RemindService();
+//		String result=rs.getRemindList(devid);
+//		System.out.println(result);
+//	}
 //	public void testcode(){
 //		String result="";
 //		String url="http://114.215.141.67/USee/GetMessage?messageid=71a6f0384f774bb095b209ceb23139b4";
