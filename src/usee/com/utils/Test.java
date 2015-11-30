@@ -10,10 +10,14 @@ import net.sf.json.JSONObject;
 
 import org.eclipse.jdt.internal.compiler.ast.MessageSend;
 
+import com.baidu.yun.push.exception.PushClientException;
+import com.baidu.yun.push.exception.PushServerException;
+
 import usee.com.bean.Map;
 import usee.com.bean.Message;
 import usee.com.model.DbReader;
 import usee.com.model.DbWriter;
+import usee.com.service.BaiduPush;
 import usee.com.service.MessageService;
 import usee.com.service.RemindService;
 import junit.framework.TestCase;
@@ -32,15 +36,15 @@ public class Test extends TestCase{
 //	double lat=39.991957;
 //	MapUtil.getAddress(lon, lat);
 //}
-	public void testgetMessages(){
-		String lon="118.786877";
-		String lat="31.917352";
-		System.out.println(lon.split("\\.")[0]);
-		
-		MessageService ms=new MessageService();
-		String result=ms.getMessages(lon, lat);
-		System.out.println(result);
-	}
+//	public void testgetMessages(){
+//		String lon="118.786877";
+//		String lat="31.917352";
+//		System.out.println(lon.split("\\.")[0]);
+//		
+//		MessageService ms=new MessageService();
+//		String result=ms.getMessages(lon, lat);
+//		System.out.println(result);
+//	}
 //	public void testsaveMessage(){
 //		MessageService ms=new MessageService();
 //		String content="hi";
@@ -93,12 +97,12 @@ public class Test extends TestCase{
 //		String address=MapUtil.getAddress(lon, lat);
 //		System.out.println(address);
 //	}
-//	public void testGetRemind(){
-//		String devid="231233";
-//		RemindService rs=new RemindService();
-//		String result=rs.getRemindList(devid);
-//		System.out.println(result);
-//	}
+	public void testGetRemindList(){
+		String devid="3509482502700609635";
+		RemindService rs=new RemindService();
+		String result=rs.getRemindList(devid);
+		System.out.println(result);
+	}
 //	public void testcode(){
 //		String result="";
 //		String url="http://114.215.141.67/USee/GetMessage?messageid=71a6f0384f774bb095b209ceb23139b4";
@@ -115,10 +119,24 @@ public class Test extends TestCase{
 //		}
 //	}
 	
-//	public void testgetRemind(){
+//	public void testgetRemin(){
 //		String remindid="21";
 //		RemindService rs=new RemindService();
 //		String result=rs.getRemind(remindid);
 //		System.out.println(result);
+//	}
+	
+//	
+//	public void testPush(){
+//		BaiduPush bp=new BaiduPush();
+//		try {
+//			bp.push("3509482502700609635","{\"title\":\"TEST\",\"description\":\"Hello Baidu push!\"}");
+//		} catch (PushClientException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (PushServerException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 //	}
 }

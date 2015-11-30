@@ -33,7 +33,8 @@ public class TestHttp extends TestCase {
 		String url="http://114.215.141.67/USee/Praise";
 		Map<String,String>parameters=new HashMap<String,String>();
 		parameters.put("devid", "231233");
-		parameters.put("messageid", "02fa96ee17d041debe5851315230db82");
+		parameters.put("station", "up");
+		parameters.put("messageid", "24452b3db50140db97c1c7545c590aea");
 		try {
 			String result=RequestClient.sendPost(url, parameters);
 			System.out.println(result);

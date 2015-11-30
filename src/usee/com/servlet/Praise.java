@@ -43,9 +43,11 @@ public class Praise extends HttpServlet {
 		// TODO Auto-generated method stub
 		String messageid=request.getParameter("messageid");
 		String devid=request.getParameter("devid");
+		String station=request.getParameter("station");
+//		String kind=request.getParameter("kind");
 		logger.info(LogUtils.logRequest(request));
 		CommentService cs=new CommentService();
-		String result=cs.praise(devid,messageid);
+		String result=cs.praise(devid,messageid,station);
 		PrintWriter out = response.getWriter();
 		out.print(result);
 	}
