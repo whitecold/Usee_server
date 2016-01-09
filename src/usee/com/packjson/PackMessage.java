@@ -27,6 +27,7 @@ public static JSONArray packList(List<Message> list){
 		try {
 		// 判断当前消息是否可用
 		String result = RequestClient.sendGet(url, null);
+		System.out.println(result);
 		JSONObject jsonObject = JSONObject.fromObject(result);
 		String content = jsonObject.getString("result");
 		int error = jsonObject.getInt("error");

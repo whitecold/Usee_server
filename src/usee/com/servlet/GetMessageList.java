@@ -39,9 +39,12 @@ public class GetMessageList extends HttpServlet {
 		response.setContentType("application/json;charset=utf-8");
 		String lon= request.getParameter("lon");
 		String lat=request.getParameter("lat");
+//		String kind = new String(request.getParameter("kind").getBytes(
+//				"iso8859-1"), "utf-8");
+		String kind=request.getParameter("kind");
 //		logger.info(LogUtils.logRequest(request));
 		MessageService ms=new  MessageService();
-		String result=ms.getMessages(lon, lat);
+		String result=ms.getMessages(lon, lat,kind);
 		PrintWriter out = response.getWriter();
 		out.print(result);
 	}
@@ -51,6 +54,19 @@ public class GetMessageList extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json;charset=utf-8");
+		String lon= request.getParameter("lon");
+		String lat=request.getParameter("lat");
+//		String kind = new String(request.getParameter("kind").getBytes(
+//				"iso8859-1"), "utf-8");
+		String kind=request.getParameter("kind");
+//		logger.info(LogUtils.logRequest(request));
+		MessageService ms=new  MessageService();
+		String result=ms.getMessages(lon, lat,kind);
+		PrintWriter out = response.getWriter();
+		out.print(result);
 	}
 
 }

@@ -28,24 +28,24 @@ public class TestHttp extends TestCase {
 //		}
 //	}
 //	
-	public void testPraise(){
-//		System.out.println("adds");
-		String url="http://114.215.141.67/USee/Praise";
-		Map<String,String>parameters=new HashMap<String,String>();
-		parameters.put("devid", "231233");
-		parameters.put("station", "up");
-		parameters.put("messageid", "24452b3db50140db97c1c7545c590aea");
-		try {
-			String result=RequestClient.sendPost(url, parameters);
-			System.out.println(result);
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+//	public void testPraise(){
+////		System.out.println("adds");
+//		String url="http://114.215.141.67/USee/Praise";
+//		Map<String,String>parameters=new HashMap<String,String>();
+//		parameters.put("devid", "231233");
+//		parameters.put("station", "up");
+//		parameters.put("messageid", "24452b3db50140db97c1c7545c590aea");
+//		try {
+//			String result=RequestClient.sendPost(url, parameters);
+//			System.out.println(result);
+//		} catch (UnsupportedEncodingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 	
 //	public void testSaveMessage(){
 //		String url="http://114.215.141.67/USee/SaveMessage ";
@@ -85,4 +85,19 @@ public class TestHttp extends TestCase {
 //	}
 //	
 
+//	public void testGetRemind(){
+//		String url="http://114.215.141.67/USee/GetRemind";
+//		try {
+//			Map<String,String>parameters=new HashMap<String,String>();
+//			parameters.put("remindid", "225");
+//			String result=RequestClient.sendGet(url, parameters);
+//			System.out.println(result);
+//		} catch (UnsupportedEncodingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 }

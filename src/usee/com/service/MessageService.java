@@ -34,24 +34,31 @@ public class MessageService {
 	 * @param lat
 	 * @return
 	 */
-	public String getMessages(String lon, String lat) {
+	public String getMessages(String lon, String lat, String kind) {
 		List<Message> list;
 		// 将经纬度截掉部分进行模糊查询
-//		 lon=lon.substring(0, lon.length()-2);
-//		 lat=lat.substring(0, lat.length()-2);
-		lon=lon.split("\\.")[0];
-		lat=lat.split("\\.")[0];
-//		System.out.println(lon);
-//		System.out.println(lat);
-		String sql = "select * from message where lon like '" + lon
-				+ "%' and lat like '" + lat + "%' and station='true'";
+		// lon=lon.substring(0, lon.length()-2);
+		// lat=lat.substring(0, lat.length()-2);
+		lon = lon.split("\\.")[0];
+		lat = lat.split("\\.")[0];
+		// System.out.println(lon);
+		// System.out.println(lat);
+		String sql=null;
+		if (null == kind) {
+			 sql = "select * from message where lon like '" + lon
+					+ "%' and lat like '" + lat + "%' and station='true'";
+		} else {
+			 sql = "select * from message where lon like '" + lon
+					+ "%' and lat like '" + lat + "%' and station='true' and kind='"+kind+"'";
+		}
+		System.out.println(sql);
 		list = DbReader.getBeans(sql, Message.class);
-//		System.out.println(list.size());
+		// System.out.println(list.size());
 		JSONArray jsonArray = new JSONArray();
 		if (list == null) {
 			return jsonArray.toString();
 		}
-		 jsonArray = PackMessage.packList(list);
+		jsonArray = PackMessage.packList(list);
 		return jsonArray.toString();
 	}
 
@@ -109,35 +116,34 @@ public class MessageService {
 		String result = "";
 		try {
 			result = RequestClient.sendGet(url, null);
-		
-		// System.out.println(result);
-		// 判断该消息是否有效
-		JSONObject jsonObject = JSONObject.fromObject(result);
-		int error = jsonObject.getInt("error");
-		String content = jsonObject.getString("result");
-		 
-		
-		// 如果有效将相关的信息封装在json中进行返回
-		if (error == 0) {
-			String sql = "select * from message where id='" + id + "'";
-			Message mess = DbReader.getBean(sql, Message.class);
-			json = PackMessage.pack(mess, content,json);
 
-			sql = "select * from comment where messageid='" + id + "'";
-			List<Comment> comments = DbReader.getBeans(sql, Comment.class);
-			JSONArray jsonArray = PackComment.packList(comments);
-			json.put("comments", jsonArray);
+			// System.out.println(result);
+			// 判断该消息是否有效
+			JSONObject jsonObject = JSONObject.fromObject(result);
+			int error = jsonObject.getInt("error");
+			String content = jsonObject.getString("result");
 
-		}
-		// 否则返回错误提示信息
-		else {
-			DbUpdate.update("update message set station='false' where id='"
-					+ id + "'");
-			json.put("error", 1);
-			json.put("content", content);
-			
-		}
-		
+			// 如果有效将相关的信息封装在json中进行返回
+			if (error == 0) {
+				String sql = "select * from message where id='" + id + "'";
+				Message mess = DbReader.getBean(sql, Message.class);
+				json = PackMessage.pack(mess, content, json);
+
+				sql = "select * from comment where messageid='" + id + "'";
+				List<Comment> comments = DbReader.getBeans(sql, Comment.class);
+				JSONArray jsonArray = PackComment.packList(comments);
+				json.put("comments", jsonArray);
+
+			}
+			// 否则返回错误提示信息
+			else {
+				DbUpdate.update("update message set station='false' where id='"
+						+ id + "'");
+				json.put("error", 1);
+				json.put("content", content);
+
+			}
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

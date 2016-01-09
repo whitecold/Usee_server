@@ -164,13 +164,14 @@ public class RequestClient {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Map<String, String> parameters = new HashMap<String, String>();
-		parameters.put("name", "sarin");
-		parameters.put("pasword", "asdadasd");
+//		Map<String, String> parameters = new HashMap<String, String>();
+//		parameters.put("messageid", "sarin");
+//		parameters.put("pasword", "asdadasd");
 		String result;
+		String messageid="91c31ce934574bd981979304ec72e9ff";
 		try {
-			result = sendPost("http://localhost:8080/FlayChat/Test",
-					parameters);
+			result = sendGet(Api.GetUrl+messageid,
+					null);
 			System.out.println(result);
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
