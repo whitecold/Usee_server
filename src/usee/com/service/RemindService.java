@@ -45,6 +45,7 @@ public class RemindService {
 			set.addAll(list2);
 		}
 
+	
 		List<Remind> list = new ArrayList<Remind>(set);
 		if (list == null) {
 			System.out.println("null");

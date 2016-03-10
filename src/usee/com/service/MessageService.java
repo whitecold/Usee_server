@@ -27,6 +27,35 @@ import net.sf.json.JSONObject;
 public class MessageService {
 	private static Logger logger = Logger.getLogger(MessageService.class);
 
+	public String getMessages(String lon, String lat, String address,
+			String kind) {
+		if (null == address)
+			return getMessages(lon, lat, kind);
+		else
+			return getMessages(address, kind);
+	}
+
+	public String getMessages(String address, String kind) {
+		List<Message> list;
+		String sql = null;
+		if (null == kind) {
+			sql = "select * from message where address = '" + address
+					+ "' and station='true'";
+		} else {
+			sql = "select * from message where address = '" + address
+					+ "' and station='true' and kind='" + kind + "'";
+		}
+		System.out.println(sql);
+		list = DbReader.getBeans(sql, Message.class);
+		// System.out.println(list.size());
+		JSONArray jsonArray = new JSONArray();
+		if (list == null) {
+			return jsonArray.toString();
+		}
+		jsonArray = PackMessage.packList(list);
+		return jsonArray.toString();
+	}
+
 	/**
 	 * 获取当前经纬度附近的消息列表
 	 * 
@@ -37,19 +66,27 @@ public class MessageService {
 	public String getMessages(String lon, String lat, String kind) {
 		List<Message> list;
 		// 将经纬度截掉部分进行模糊查询
-		// lon=lon.substring(0, lon.length()-2);
-		// lat=lat.substring(0, lat.length()-2);
-		lon = lon.split("\\.")[0];
-		lat = lat.split("\\.")[0];
+		 lon=lon.substring(0, 5);
+		 lat=lat.substring(0, 4);
+//		 logger.info("lon:"+lon);
+//		 logger.info("lat:"+lat);
+//		 lon = lon.split("\\.")[0];
+//		 lat = lat.split("\\.")[0];
+//		String address = MapUtil.getAddress(Double.parseDouble(lon),
+//				Double.parseDouble(lat));
 		// System.out.println(lon);
 		// System.out.println(lat);
-		String sql=null;
+		String sql = null;
 		if (null == kind) {
-			 sql = "select * from message where lon like '" + lon
-					+ "%' and lat like '" + lat + "%' and station='true'";
+//			sql = "select * from message where address = '" + address
+//					+ "' and station='true'";
+			sql= "select * from message where lon like '" + lon 
+					+ "%' and lat like '"+lat+"%'and station='true'";
 		} else {
-			 sql = "select * from message where lon like '" + lon
-					+ "%' and lat like '" + lat + "%' and station='true' and kind='"+kind+"'";
+//			sql = "select * from message where address = '" + address
+//					+ "' and station='true' and kind='" + kind + "'";
+			sql= "select * from message where lon like '" + lon 
+					+ "%' and lat like '"+lat+"%' and station='true' and kind='" + kind + "";
 		}
 		System.out.println(sql);
 		list = DbReader.getBeans(sql, Message.class);
@@ -91,10 +128,13 @@ public class MessageService {
 			String result = RequestClient.sendPost(url, par);
 			JSONObject jsonObject = JSONObject.fromObject(result);
 			String id = jsonObject.getString("result");
+			String address = MapUtil.getAddress(Double.parseDouble(lon),
+					Double.parseDouble(lat));
+
 			// 在数据库中插入记录
-			String sql = "insert into message values (?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into message values (?,?,?,?,?,?,?,?,?,?)";
 			String[] pars = { id, devid, "true", kind, lon, lat, "0", "0",
-					creattime };
+					creattime, address };
 			DbWriter.write(sql, pars);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

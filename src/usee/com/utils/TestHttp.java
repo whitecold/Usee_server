@@ -67,23 +67,25 @@ public class TestHttp extends TestCase {
 //			e.printStackTrace();
 //		}
 //	}
-//	public void testGetMessage(){
-//		String url="http://114.215.141.67/USee/GetMessageList";
-//		try {
-//			Map<String,String>parameters=new HashMap<String,String>();
-//			parameters.put("lon", "118.786877");
-//			parameters.put("lat", "31.917352");
-//			String result=RequestClient.sendGet(url, parameters);
-//			System.out.println(result);
-//		} catch (UnsupportedEncodingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
-//	
+	public void testGetMessage(){
+		String url="http://114.215.141.67/USee/GetMessageList";
+		try {
+			Map<String,String>parameters=new HashMap<String,String>();
+			parameters.put("lon", "118.786877");
+			parameters.put("lat", "31.917352");
+//			parameters.put("location", "河南省郑州市巩义市北山口镇磨洼");
+//			parameters.put("kind", "广场");
+			String result=RequestClient.sendGet(url, parameters);
+			System.out.println(result);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 
 //	public void testGetRemind(){
 //		String url="http://114.215.141.67/USee/GetRemind";

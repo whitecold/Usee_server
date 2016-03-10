@@ -8,4 +8,6 @@ public class Api {
 	
 	public static String ApiKey="qEACaHEYocGoLzVQIueLM6OM";
 	public static String SecretKey="w1ZQjaX7eGu57M9B3O9D2AVdtmLNsgYQ";
+	
+	public static int hotsize=10;
 }

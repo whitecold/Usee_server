@@ -10,7 +10,21 @@ private String kind;
 private int praiseNum;
 private int commentNum;
 private String creattime;
+private String address;
+private int count;
 
+public int getCount() {
+	return count;
+}
+public void setCount(int count) {
+	this.count = count;
+}
+public String getAddress() {
+	return address;
+}
+public void setAddress(String address) {
+	this.address = address;
+}
 public String getCreattime() {
 	return creattime;
 }
