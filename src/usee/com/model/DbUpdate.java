@@ -32,12 +32,16 @@ public class DbUpdate {
 		try {
 			// 执行更新
 			flag = qr.update(conn, sql, null);
+			return flag;
 		} catch (SQLException e) {
 			logger.error(e);
 			e.printStackTrace();
+			return 0;
+		}finally{
+			DbUtils.closeQuietly(conn);
 		}
-		DbUtils.closeQuietly(conn);
-		return flag;
+		
+		
 	}
 	
 }

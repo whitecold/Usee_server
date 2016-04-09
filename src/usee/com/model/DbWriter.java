@@ -22,12 +22,17 @@ public class DbWriter {
 		try {
 			// 执行插入
 			flag = qr.update(conn, sql, par);
+			return flag;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			logger.error(e);
+			return 0;
 		}
+		finally{
 		DbUtils.closeQuietly(conn);
-		return flag;
+		}
+//		DbUtils.close(conn);
+		
 	}
 
 	

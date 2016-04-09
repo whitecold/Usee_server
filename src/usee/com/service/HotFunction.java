@@ -32,7 +32,7 @@ public class HotFunction {
 			}
 			hotsize=hotsize/list.size();
 			for (Message message : list) {
-				if ((message.getCount() >hotsize||message.getCount() ==hotsize)&&message.getAddress()!=null)
+				if ((message.getCount() >hotsize||message.getCount() ==hotsize)&&message.getAddress()!=null&&message.getAddress().equals(""))
 					locations.add(message.getAddress());
 			}
 		}
@@ -44,7 +44,7 @@ public class HotFunction {
 		else{
 			 jsonArray = JSONArray.fromObject(locations);
 		}
-		logger.info(jsonArray);
+//		logger.info(jsonArray);
 		return jsonArray.toString();
 	}
 }

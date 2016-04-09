@@ -33,8 +33,8 @@ public static JSONArray packList(List<Message> list){
 		int error = jsonObject.getInt("error");
 		// 如果可用封装到json中
 		if (error == 0) {
-			// String address=MapUtil.getAddress(mess.getLon(),
-			// mess.getLat());
+//			 String address=MapUtil.getAddress(mess.getLon(),
+//			 mess.getLat());
 			JSONObject json = new JSONObject();
 			json.put("content", content);
 			json.put("messageid", mess.getId());
@@ -67,10 +67,16 @@ public static JSONArray packList(List<Message> list){
 public static JSONObject pack(Message message,String content,JSONObject json){
 		json.put("error", 0);
 		// 获取该经纬度的实际地址
-//		String address = MapUtil.getAddress(message.getLon(), message.getLat());
+		if(message.getAddress()==null||message.getAddress().equals("")){
+			String address = MapUtil.getAddress(message.getLon(), message.getLat());
+			json.put("address", address);
+		}
+		else{
+			json.put("address", message.getAddress());
+		}
 		json.put("content", content);
 		json.put("messageid", message.getId());
-		json.put("address", message.getAddress());
+		
 		// json.put("lon", mess.getLon());
 		// json.put("lat",mess.getLat());
 		json.put("praiseNum", message.getPraiseNum());

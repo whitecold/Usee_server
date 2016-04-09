@@ -27,7 +27,7 @@ public class DbReader {
      */
 	@Test
     public static <T>T getBean(String sql, Class<T> tClass) {
-        try {
+       
             //得到需要的Bean
             T bean;
             // 建立连接
@@ -35,10 +35,10 @@ public class DbReader {
             List<T> list;
             // 创建SQL执行工具
             QueryRunner qr = new QueryRunner();
+            try {
             //执行查询
             list = qr.query(conn, sql, new BeanListHandler<T>(tClass));
             //关闭连接
-            DbUtils.closeQuietly(conn);
             if (list.size() != 0) {
             	//读取的内容保存在list中，取第一个（实际也只有一个）
                return list.get(0);
@@ -50,6 +50,9 @@ public class DbReader {
             e.printStackTrace();
             return null;
         }
+            finally{
+           	 DbUtils.closeQuietly(conn);
+           }
     }
 	/**
 	 * 根据sql语句查询多条记录

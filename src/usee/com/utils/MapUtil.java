@@ -17,8 +17,8 @@ public class MapUtil {
 	@Test
 public static String getAddress(double lon,double lat){
 	String address="";
-	address=getMyAddress(lon, lat);
-	if(address.equals(""))
+//	address=getMyAddress(lon, lat);
+//	if(address.equals(""))
 	address=getAmapAddress(lon, lat);
 	return address;
 }
@@ -34,7 +34,7 @@ private static String getAmapAddress(double lon,double lat){
 	String address="";
 	String url="http://restapi.amap.com/v3/geocode/regeo";
 	HashMap par=new HashMap<String,String>();
-	par.put("key", "8bb1f4638be2d7feef2a53ab5500bec3");
+	par.put("key", "ac41cef6b6f55a06f9252b4f68747cc9");
 	par.put("location", lon+","+lat);
 	try {
 		String result=RequestClient.sendGet(url, par);
@@ -46,9 +46,11 @@ private static String getAmapAddress(double lon,double lat){
 		 return address;
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
-		logger.error(e);
+		logger.error("lon:"+lon+" lat:"+lat+" "+e);
 		e.printStackTrace();
+		address="火星";
+		return address;
 	} 
-	return address;
+	
 }
 }
